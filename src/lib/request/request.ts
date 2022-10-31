@@ -41,11 +41,10 @@ const makeSnykRequest = async (
       ? userAgentPrefix + '/'
       : userAgentPrefix;
   const requestHeaders: Record<string, any> = {
-    'Content-Type': 'application/json',
+    'Content-Type': `${request.useRESTApi ? 'application/vnd.api+json' : 'application/json'}`,
     Authorization: 'token ' + snykToken,
     'User-Agent': `${topParentModuleName}${userAgentPrefixChecked}tech-services/snyk-request-manager/1.0`,
   };
-
   const apiClient = axios.create({
     baseURL: request.useRESTApi ? apiUrlREST : apiUrl,
     responseType: 'json',
